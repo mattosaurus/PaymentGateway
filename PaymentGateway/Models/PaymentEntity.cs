@@ -6,6 +6,8 @@ namespace PaymentGateway.Models
 {
     public class PaymentEntity : Payment
     {
+        public Guid Id { get; set; }
+
         public PaymentStatus PaymentStatus { get; set; }
     }
 }

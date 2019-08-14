@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using PaymentGateway;
 using Microsoft.Azure.WebJobs.Hosting;
 using PaymentGateway.Services;
+using PaymentGateway.Models;
 
 [assembly: WebJobsStartup(typeof(Startup))]
 
@@ -31,11 +32,15 @@ namespace PaymentGateway
         {
             _logger.LogInformation("C# HTTP trigger function processed a GET request.");
 
-            string name = id;
+            Guid paymentId; 
+            if (id == null || !Guid.TryParse(id, out paymentId))
+            {
+                return new BadRequestObjectResult("No ID parameter provided");
+            }
 
-            return name != null
-                ? (ActionResult)new OkObjectResult($"Hello, {name}")
-                : new BadRequestObjectResult("Please pass a name on the query string");
+            PaymentEntity paymentEntity = _paymentGatewayService.GetPayment(paymentId);
+
+            return new OkObjectResult(paymentEntity);
         }
 
         [FunctionName("SetPayment")]
@@ -44,12 +49,11 @@ namespace PaymentGateway
             _logger.LogInformation("C# HTTP trigger function processed a POST request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            string name = data?.name;
+            Payment payment = JsonConvert.DeserializeObject<Payment>(requestBody);
 
-            return name != null
-                ? (ActionResult)new OkObjectResult($"Hello, {name}")
-                : new BadRequestObjectResult("Please pass a name in the request body");
+            PaymentResponse paymentResponse = _paymentGatewayService.SetPayment(payment);
+
+            return new OkObjectResult(paymentResponse);
         }
     }
 }
