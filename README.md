@@ -34,7 +34,7 @@ This was done as an Azure Function rather than a Web Application because it shou
 * API client: I didn't provide one but would be easy enough to create.
 * Build script/CI: Easy enough to do in Azure DevOps but I haven't done so as it's not possible to grant public access (and would a bad idea anyway).
 * Performance testing: SetPayment method was load tested with a simple console application, the function happily coped with around 150 requests/s.
-(https://blog.bitscry.com/wp-content/uploads/2019/08/payment-gateway-metrics.png)
+![performance metrics](https://blog.bitscry.com/wp-content/uploads/2019/08/payment-gateway-metrics.png)
 * Encryption: Requests are transmitted over HTTPS so should be secure, any data stored by acquiring bank and payment processor should be encrypted.
 * Data storage: I didn't worry about data storage for this, just using an in-memory dictionary as an example but it would be easy enough to add in if required.
 * Extra: A queuing system such as Event Hub would be a good idea to ensure messages are processed in the correct order, easy enough to implement but not possible to share access.
