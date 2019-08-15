@@ -40,7 +40,7 @@ namespace PaymentGateway
 
             PaymentEntity paymentEntity = _paymentGatewayService.GetPayment(paymentId);
 
-            return new OkObjectResult(paymentEntity);
+            return new OkObjectResult(paymentEntity.ToPaymentEntityMasked());
         }
 
         [FunctionName("SetPayment")]
