@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PaymentGateway.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,12 +17,12 @@ namespace PaymentGateway.Models
             {
                 Id = Id,
                 PaymentStatus = PaymentStatus,
-                CardNumber = CardNumber.ToString(),
-                ExpiryYear = ExpiryYear.ToString(),
-                ExpiryMonth = ExpiryMonth.ToString(),
+                CardNumber = CardNumber.Mask(0, 12),
+                ExpiryYear = ExpiryYear.ToStringMask(0, 4),
+                ExpiryMonth = ExpiryMonth.ToStringMask(0, 2),
                 Amount = Amount,
                 CurrencyCode = CurrencyCode,
-                CVV = CVV.ToString()
+                CVV = CVV.ToStringMask(0, 3)
             };
         }
     }

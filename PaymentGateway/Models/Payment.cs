@@ -6,7 +6,7 @@ namespace PaymentGateway.Models
 {
     public class Payment
     {
-        public long CardNumber { get; set; }
+        public string CardNumber { get; set; }
 
         public int ExpiryYear { get; set; }
 

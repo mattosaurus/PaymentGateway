@@ -7,56 +7,12 @@ namespace PaymentGateway.Models
 {
     public class PaymentEntityMasked : PaymentEntity
     {
-        private string cardNumber;
-        public new string CardNumber
-        {
-            get
-            {
-                return cardNumber.Mask(0, 12);
-            }
-            set
-            {
-                cardNumber = value;
-            }
-        }
+        public new string CardNumber { get; set; }
 
-        private string expiryYear;
-        public new string ExpiryYear
-        {
-            get
-            {
-                return expiryYear.Mask(0, 4);
-            }
-            set
-            {
-                expiryYear = value;
-            }
-        }
+        public new string ExpiryYear { get; set; }
 
-        private string expiryMonth;
-        public new string ExpiryMonth
-        {
-            get
-            {
-                return expiryMonth.Mask(0, 2);
-            }
-            set
-            {
-                expiryMonth = value;
-            }
-        }
+        public new string ExpiryMonth { get; set; }
 
-        private string cvv;
-        public new string CVV
-        {
-            get
-            {
-                return cvv.Mask(0, 3);
-            }
-            set
-            {
-                cvv = value;
-            }
-        }
+        public new string CVV { get; set; }
     }
 }
