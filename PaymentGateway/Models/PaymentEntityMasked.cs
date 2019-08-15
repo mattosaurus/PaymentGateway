@@ -12,7 +12,7 @@ namespace PaymentGateway.Models
         {
             get
             {
-                return cardNumber.Mask(0, 8);
+                return cardNumber.Mask(0, 12);
             }
             set
             {
