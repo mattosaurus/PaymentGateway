@@ -19,7 +19,7 @@ namespace PaymentGateway.Models
                 PaymentStatus = PaymentStatus,
                 CardNumber = CardNumber.Mask(0, 12),
                 ExpiryYear = ExpiryYear.ToStringMask(0, 4),
-                ExpiryMonth = ExpiryMonth.ToStringMask(0, 2),
+                ExpiryMonth = ExpiryMonth.ToString("D2").Mask(0, 2),
                 Amount = Amount,
                 CurrencyCode = CurrencyCode,
                 CVV = CVV.ToStringMask(0, 3)

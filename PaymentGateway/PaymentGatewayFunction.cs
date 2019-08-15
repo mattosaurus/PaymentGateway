@@ -39,7 +39,7 @@ namespace PaymentGateway
             }
 
             PaymentEntity paymentEntity = _paymentGatewayService.GetPayment(paymentId);
-
+            PaymentEntityMasked paymentEntityMasked = paymentEntity.ToPaymentEntityMasked();
             return new OkObjectResult(paymentEntity.ToPaymentEntityMasked());
         }
 

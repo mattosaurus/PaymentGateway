@@ -30,7 +30,7 @@ namespace PaymentGateway.Extensions
 
             string mask = new string(maskCharacter, maskLength);
             string unMaskStart = source.Substring(0, start);
-            string unMaskEnd = source.Substring(start + maskLength - 1, source.Length - maskLength);
+            string unMaskEnd = source.Substring(start + maskLength, source.Length - maskLength);
 
             return unMaskStart + mask + unMaskEnd;
         }
